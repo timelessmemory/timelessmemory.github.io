@@ -84,28 +84,22 @@
 
 
 
-<meta name="description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.
-目录结构
-主程序package personal.m">
+<meta name="description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网易云音乐爬虫--评论爬取以及Top Music统计">
 <meta property="og:url" content="https://timelessmemory.github.io/2016/11/01/网易云音乐爬虫-评论爬取以及Top-Music统计/index.html">
 <meta property="og:site_name" content="timelessmemoryli's blog">
-<meta property="og:description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.
-目录结构
-主程序package personal.m">
+<meta property="og:description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026170154772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026170849842?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026170918745?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026171026667?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026171546982?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20161026171654978?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2016-11-01T07:17:06.000Z">
+<meta property="og:updated_time" content="2016-11-01T07:38:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网易云音乐爬虫--评论爬取以及Top Music统计">
-<meta name="twitter:description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.
-目录结构
-主程序package personal.m">
+<meta name="twitter:description" content="网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20161026170154772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 
 
@@ -370,7 +364,7 @@
       
 
       
-        <p>   网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。<br>   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.</p>
+        <p>   网易云云音乐评论十分有趣，于是就想写个爬虫爬取评论。但是不熟悉Python，就用java写了个。<br>   主要使用了HttpClient,，Jsoup， 队列， 线程， log4j，poi生成Excel保存结果， 书写过程中主要一个问题就是评论获取，网易对其进行了加密，进行好一番搜索才找到解决方法。爬取歌单数，top歌曲数都可以动态进行配置.<br><a id="more"></a></p>
 <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><p><img src="http://img.blog.csdn.net/20161026170154772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="目录结构"></p>
 <h1 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h1><pre><code>package personal.mario.main;  
 
