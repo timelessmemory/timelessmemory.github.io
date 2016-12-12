@@ -84,34 +84,16 @@
 
 
 
-<meta name="description" content="angular-ueditor.js
-(function() {
-   &amp;quot;use strict&amp;quot;;
-   (function() {
-     var NGUeditor;
-     NGUeditor = angular.module(&amp;quot;ng.ueditor&amp;quot;, []);
-     NGUeditor.directive(&amp;quot;ueditor&amp;quo">
+<meta name="description" content="最近在写一个可配置，灵活度比较高的问卷调查系统，实现后台配置动态生成问卷，使用到了angularjs和百度的富文本编辑器ueditor，为了实现文本内内容的绑定在网上找了一段集成代码，其实就是一个指令。使用过程中发现了一个不容易发现的bug，就是在编辑器中插入图片之后不再进行其他内容的插入，此时图片地址是错误的。以下是修改以后的代码:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular-ueditor's bug">
 <meta property="og:url" content="https://timelessmemory.github.io/2016/12/02/angular-ueditor-s-bug/index.html">
 <meta property="og:site_name" content="timelessmemoryli's blog">
-<meta property="og:description" content="angular-ueditor.js
-(function() {
-   &amp;quot;use strict&amp;quot;;
-   (function() {
-     var NGUeditor;
-     NGUeditor = angular.module(&amp;quot;ng.ueditor&amp;quot;, []);
-     NGUeditor.directive(&amp;quot;ueditor&amp;quo">
-<meta property="og:updated_time" content="2016-12-02T05:36:24.000Z">
+<meta property="og:description" content="最近在写一个可配置，灵活度比较高的问卷调查系统，实现后台配置动态生成问卷，使用到了angularjs和百度的富文本编辑器ueditor，为了实现文本内内容的绑定在网上找了一段集成代码，其实就是一个指令。使用过程中发现了一个不容易发现的bug，就是在编辑器中插入图片之后不再进行其他内容的插入，此时图片地址是错误的。以下是修改以后的代码:">
+<meta property="og:updated_time" content="2016-12-12T05:49:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular-ueditor's bug">
-<meta name="twitter:description" content="angular-ueditor.js
-(function() {
-   &amp;quot;use strict&amp;quot;;
-   (function() {
-     var NGUeditor;
-     NGUeditor = angular.module(&amp;quot;ng.ueditor&amp;quot;, []);
-     NGUeditor.directive(&amp;quot;ueditor&amp;quo">
+<meta name="twitter:description" content="最近在写一个可配置，灵活度比较高的问卷调查系统，实现后台配置动态生成问卷，使用到了angularjs和百度的富文本编辑器ueditor，为了实现文本内内容的绑定在网上找了一段集成代码，其实就是一个指令。使用过程中发现了一个不容易发现的bug，就是在编辑器中插入图片之后不再进行其他内容的插入，此时图片地址是错误的。以下是修改以后的代码:">
 
 
 
@@ -375,7 +357,7 @@
       
 
       
-        <p>angular-ueditor.js</p>
+        <p>最近在写一个可配置，灵活度比较高的问卷调查系统，实现后台配置动态生成问卷，使用到了angularjs和百度的富文本编辑器ueditor，为了实现文本内内容的绑定在网上找了一段集成代码，其实就是一个指令。使用过程中发现了一个不容易发现的bug，就是在编辑器中插入图片之后不再进行其他内容的插入，此时图片地址是错误的。以下是修改以后的代码:<br><a id="more"></a><br>angular-ueditor.js</p>
 <pre><code>(function() {
    &quot;use strict&quot;;
    (function() {
@@ -390,93 +372,92 @@
              config: &quot;=&quot;,
              ready: &quot;=&quot;
            },
-</code></pre><a id="more"></a>
-<pre><code>          link: function($S, element, attr, ctrl) {
-            var _NGUeditor, _updateByRender;
-            _updateByRender = false;
-            _NGUeditor = (function() {
-              function _NGUeditor() {
-                this.bindRender();
-                this.initEditor();
-                return;
-              }
+           link: function($S, element, attr, ctrl) {
+             var _NGUeditor, _updateByRender;
+             _updateByRender = false;
+             _NGUeditor = (function() {
+               function _NGUeditor() {
+                 this.bindRender();
+                 this.initEditor();
+                 return;
+               }
 
 
-              /**
-               * 初始化编辑器
-               * @return {[type]} [description]
-               */
+               /**
+                * 初始化编辑器
+                * @return {[type]} [description]
+                */
 
-              _NGUeditor.prototype.initEditor = function() {
-                var _UEConfig, _editorId, _self;
-                _self = this;
-                if (typeof UE === &apos;undefined&apos;) {
-                  console.error(&quot;Please import the local resources of ueditor!&quot;);
-                  return;
-                }
-                _UEConfig = $S.config ? $S.config : {};
-                _editorId = attr.id ? attr.id : &quot;_editor&quot; + (Date.now());
-                element[0].id = _editorId;
-                this.editor = new UE.ui.Editor(_UEConfig);
-                this.editor.render(_editorId);
-                return this.editor.ready(function() {
-                  _self.editorReady = true;
-                  _self.editor.addListener(&quot;contentChange&quot;, function() {
-                    //此处设置一个延迟，防止图片还没有从服务器返回，从而获取到的是loading图片
-                    setTimeout(function() {
-                      ctrl.$setViewValue(_self.editor.getContent());
-                      if (!_updateByRender) {
-                        if (!$S.$$phase) {
-                          $S.$apply();
-                        }
-                      }
-                      _updateByRender = false;
-                    }, 50)
-                  });
-                  if (_self.modelContent &amp;&amp; _self.modelContent.length &gt; 0) {
-                    _self.setEditorContent();
-                  }
-                  if (typeof $S.ready === &quot;function&quot;) {
-                    $S.ready(_self.editor);
-                  }
-                  $S.$on(&quot;$destroy&quot;, function() {
-                    if (!attr.id &amp;&amp; UE.delEditor) {
-                      UE.delEditor(_editorId);
-                    }
-                  });
-                });
-              };
+               _NGUeditor.prototype.initEditor = function() {
+                 var _UEConfig, _editorId, _self;
+                 _self = this;
+                 if (typeof UE === &apos;undefined&apos;) {
+                   console.error(&quot;Please import the local resources of ueditor!&quot;);
+                   return;
+                 }
+                 _UEConfig = $S.config ? $S.config : {};
+                 _editorId = attr.id ? attr.id : &quot;_editor&quot; + (Date.now());
+                 element[0].id = _editorId;
+                 this.editor = new UE.ui.Editor(_UEConfig);
+                 this.editor.render(_editorId);
+                 return this.editor.ready(function() {
+                   _self.editorReady = true;
+                   _self.editor.addListener(&quot;contentChange&quot;, function() {
+                     //此处设置一个延迟，防止图片还没有从服务器返回，从而获取到的是loading图片
+                     setTimeout(function() {
+                       ctrl.$setViewValue(_self.editor.getContent());
+                       if (!_updateByRender) {
+                         if (!$S.$$phase) {
+                           $S.$apply();
+                         }
+                       }
+                       _updateByRender = false;
+                     }, 50)
+                   });
+                   if (_self.modelContent &amp;&amp; _self.modelContent.length &gt; 0) {
+                     _self.setEditorContent();
+                   }
+                   if (typeof $S.ready === &quot;function&quot;) {
+                     $S.ready(_self.editor);
+                   }
+                   $S.$on(&quot;$destroy&quot;, function() {
+                     if (!attr.id &amp;&amp; UE.delEditor) {
+                       UE.delEditor(_editorId);
+                     }
+                   });
+                 });
+               };
 
-              _NGUeditor.prototype.setEditorContent = function(content) {
-                if (content == null) {
-                  content = this.modelContent;
-                }
-                if (this.editor &amp;&amp; this.editorReady) {
-                  this.editor.setContent(content);
-                }
-              };
+               _NGUeditor.prototype.setEditorContent = function(content) {
+                 if (content == null) {
+                   content = this.modelContent;
+                 }
+                 if (this.editor &amp;&amp; this.editorReady) {
+                   this.editor.setContent(content);
+                 }
+               };
 
-              _NGUeditor.prototype.bindRender = function() {
-                var _self;
-                _self = this;
-                ctrl.$render = function() {
-                  _self.modelContent = (ctrl.$isEmpty(ctrl.$viewValue) ? &quot;&quot; : ctrl.$viewValue);
-                  _updateByRender = true;
-                  _self.setEditorContent();
-                };
-              };
+               _NGUeditor.prototype.bindRender = function() {
+                 var _self;
+                 _self = this;
+                 ctrl.$render = function() {
+                   _self.modelContent = (ctrl.$isEmpty(ctrl.$viewValue) ? &quot;&quot; : ctrl.$viewValue);
+                   _updateByRender = true;
+                   _self.setEditorContent();
+                 };
+               };
 
-              return _NGUeditor;
+               return _NGUeditor;
 
-            })();
-            new _NGUeditor();
-          }
-        };
-      }
-    ]);
-  })();
+             })();
+             new _NGUeditor();
+           }
+         };
+       }
+     ]);
+   })();
 
-}).call(this);
+ }).call(this);
 </code></pre><p>该指令通过监听ueditor的contentChange事件来给ng-model变量赋值，从而达到数据绑定的目的。但是如果内容是图片就会有一个请求服务器的间隔。如果直接在文本框输入一张图片，打印出这个model的值，可以发现值是loading图片的地址，我猜测ueditor在请求之前给content赋值为loading图片地址，待图片地址从服务器返回后进行覆盖。所以如果在图片地址还没返回之前取content的值是错误的，所以我设置了一个50ms的延迟，虽然不能从根本上解决，但是主要保证图片请求服务器并返回地址的时间少于50ms就没问题，另外这样的另一个不足就是不管图片还是文字内容变化都会有50ms延迟。还有就是这个bug只会在最后一个输入的是图片才会出现，因为如果你紧跟着输入文字会出触发contentChange事件去获取content，此时图片地址已经返回，获取的就是正确的地址。</p>
 
       
