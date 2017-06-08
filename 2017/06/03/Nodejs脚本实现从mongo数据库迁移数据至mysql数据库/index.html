@@ -90,7 +90,7 @@
 <meta property="og:url" content="https://timelessmemory.github.io/2017/06/03/Nodejs脚本实现从mongo数据库迁移数据至mysql数据库/index.html">
 <meta property="og:site_name" content="timelessmemoryli's blog">
 <meta property="og:description" content="weibo.jsvar mongoose = require(‘mongoose’);var connection = mongoose.createConnection(‘mongodb://127.0.0.1:27017/weibodata’);var Schema = mongoose.Schema;">
-<meta property="og:updated_time" content="2017-06-08T06:31:47.000Z">
+<meta property="og:updated_time" content="2017-06-08T06:34:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs脚本实现从mongo数据库迁移数据至mysql数据库">
 <meta name="twitter:description" content="weibo.jsvar mongoose = require(‘mongoose’);var connection = mongoose.createConnection(‘mongodb://127.0.0.1:27017/weibodata’);var Schema = mongoose.Schema;">
@@ -359,7 +359,7 @@
       
         <p>weibo.js<br>var mongoose = require(‘mongoose’);<br>var connection = mongoose.createConnection(‘mongodb://127.0.0.1:27017/weibodata’);<br>var Schema = mongoose.Schema;  </p>
 <a id="more"></a>
-<p>weibo.js<br>var mongoose = require(‘mongoose’);<br>var connection = mongoose.createConnection(‘mongodb://127.0.0.1:27017/weibodata’);<br>var Schema = mongoose.Schema;<br>var weiboSchema = new Schema({<br>    content : String,<br>    uid : String<br>}, {<br>    collection: ‘micro_blog’<br>});  </p>
+<p>var weiboSchema = new Schema({<br>    content : String,<br>    uid : String<br>}, {<br>    collection: ‘micro_blog’<br>});  </p>
 <p>weiboSchema.methods.findList = function(callback) {<br>    return this.model(‘micro_blog’).find({“uid” : “1730096327”}, callback);<br>}  </p>
 <p>var WeiboModel = connection.model(‘micro_blog’, weiboSchema);  </p>
 <p>var weiboEntity = new WeiboModel({});  </p>
