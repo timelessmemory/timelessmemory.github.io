@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>https://timelessmemory.github.io/2017/06/03/Nodejs%E8%84%9A%E6%9C%AC%E5%AE%9E%E7%8E%B0%E4%BB%8Emongo%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E8%87%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2017-06-08T06:31:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Nodejs脚本实现从mongo数据库迁移数据至mysql数据库</title>
+        <pubTime>2017-06-03T04:03:12.000Z</pubTime>
+        
+        <tag>nodejs</tag>
+         
+        <tag>mongo</tag>
+         
+        <tag>mysql</tag>
+         
+        <tag>数据库迁移</tag>
+         
+         
+           
+             
+              <breadCrumb title="nodejs" url="https://timelessmemory.github.io/categories/nodejs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://timelessmemory.github.io/2016/12/02/angular-ueditor-s-bug/</loc>
     <lastmod>2016-12-12T05:49:54.000Z</lastmod>
     <data>
